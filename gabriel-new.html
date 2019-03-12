@@ -1,1 +1,50 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+</head>
+<body>
+
+    <script>
+        //how many weeks to display;
+        const weeks = 5;
+        //how many days in a week;
+        const days = 7;
+        const daysArray =[];
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+        container.style.width = '720px';
+        container.style.height = (weeks * 100) + 'px';
+        const body = document.querySelector('body');
+        body.style.display = 'flex';
+        body.style.justifyContent = 'center';
+        const today = new Date().getMonth();
+        const firstDay = new Date(`${today + 1}/01/${new Date().getFullYear()}`).getDay();
+        const nextMonth = new Date(`${today + 1 + 1}/01/${new Date().getFullYear()}`);
+        nextMonth.setDate( nextMonth.getDate() -1);
+        const lastDay = nextMonth.getDate();
+        let dayNumber = 0;
+        console.log(firstDay, 'first day');
+        console.log('last day', lastDay);
+        for (let i = 0; i < weeks * days; i++){
+            const day = document.createElement('div');
+            if (i >= firstDay && dayNumber < lastDay) {
+                dayNumber++;
+                day.innerText = 'x';
+            }
+            day.style.display = 'inline-block';
+            day.style.border = '1px solid black'
+            day.style.backgroundColor  ='grey';
+            day.style.height = '100px';
+            day.style.width = '100px';
+            document.body.appendChild(day);
+            daysArray[i] = day;
+        }
+        console.log('days', daysArray);
+
+    </script>
+    
+</body>
+</html>
